@@ -1,2 +1,0 @@
-# my-preso
-My Presentation
