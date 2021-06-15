@@ -1,929 +1,256 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8">
-
-  <title>Remote Development at LinkedIn</title>
-
-  <meta name="description" content="">
-  <meta name="author" content="">
-
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Snehangshu Karmakar">
+  <meta name="dcterms.date" content="2021-06-14">
+  <title>Demo Reveal JS</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- REVEAL CSS-->
-  <link rel="stylesheet" href="libs/reveal.js/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="libs/reveal.js/3.8.0/css/reveal.css">
-  
-  <link rel="stylesheet" href="libs/reveal.js/3.8.0/css/theme/moon.css" id="theme">
-  
-  
-  <link rel="stylesheet" href="libs/reveal.js/3.8.0/plugin/title-footer/title-footer-mod.css" />
-
-  <!-- MERMAID-->
-  <script src="libs/reveal.js/3.8.0/plugin/mermaid/mermaid.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="revealjs/dist/reset.css">
+  <link rel="stylesheet" href="revealjs/dist/reveal.css">
   <style>
-  .mermaid {
-    font-size: 0.5em;
-  }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-
-  <style>
-    [class*=task-list-item] {
-    min-height: 22px;
-    margin-top: 6px!important;
-    margin-bottom: 6px!important;
-    padding-left: 0;
-    list-style: none;
-}
-
-[class*=task-list-item]>input:first-child {
-    position: absolute!important;
-    opacity: 0;
-    margin: 0;
-}
-[class*=task-list-item]>label {
-    padding-left: 29px!important;
-    min-height: 22px;
-    line-height: 22px;
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-    margin-bottom: 0;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.task-list-item>input:first-child:checked+input[type=hidden]+label::before, .task-list-item>input:first-child:checked+label::before {
-    background-color: #ecf0f1;
-    border-color: #ecf0f1;
-}
-
-[class*=task-list-item]>input:first-child+input[type=hidden]+label::before, [class*=task-list-item]>input:first-child+label::before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    border: 1px solid #D3CFC8;
-    border-radius: 0;
-    margin-left: -29px;
-}
-
-
-[class*=task-list-item]>input:first-child:checked+input[type=hidden]+label::after, [class*=task-list-item]>input:first-child:checked+label::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 7px;
-    height: 10px;
-    border: 2px solid #fff;
-    border-left: none;
-    border-top: none;
-    transform: translate(7.75px,4.5px) rotate(45deg);
-    -ms-transform: translate(7.75px,4.5px) rotate(45deg);
-}
-
-
-.task-list-item>input:first-child:checked+input[type=hidden]+label::after, .task-list-item>input:first-child:checked+label::after {
-    border-bottom-color: #95a5a6;
-    border-right-color: #95a5a6;
-}
-  </style>
-
-  <!-- Theme used for syntax highlighting of code -->
-  
-  <link rel="stylesheet" href="libs/highlight.js/9.12.0/monokai.css">
-  
-
-  
-  
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match(/print-pdf/gi) ? 'libs/reveal.js/3.8.0/css/print/pdf.css' : 'libs/reveal.js/3.8.0/css/print/paper.css';
-    document.getElementsByTagName('head')[0].appendChild(link);
-  </script>
-
-  <style>
-    /* Solarized Light theme */
-     .line {
-      display: block;
-    }
-    
-
-    .line.focus {
-      background: #fdf6e3;
-      color: #657b83;
-    }
-
-/*
-    .line.focus .hljs-comment,
-    .line.focus .hljs-quote {
-      color: #93a1a1;
-    }
-
-    .line.focus .hljs-keyword,
-    .line.focus .hljs-selector-tag,
-    .line.focus .hljs-addition {
-      color: #859900;
-    }
-
-    .line.focus .hljs-number,
-    .line.focus .hljs-string,
-    .line.focus .hljs-meta .hljs-meta-string,
-    .line.focus .hljs-literal,
-    .line.focus .hljs-doctag,
-    .line.focus .hljs-regexp {
-      color: #2aa198;
-    }
-
-    .line.focus .hljs-title,
-    .line.focus .hljs-section,
-    .line.focus .hljs-name,
-    .line.focus .hljs-selector-id,
-    .line.focus .hljs-selector-class {
-      color: #268bd2;
-    }
-
-    .line.focus .hljs-attribute,
-    .line.focus .hljs-attr,
-    .line.focus .hljs-variable,
-    .line.focus .hljs-template-variable,
-    .line.focus .hljs-class .hljs-title,
-    .line.focus .hljs-type {
-      color: #b58900;
-    }
-
-    .line.focus .hljs-symbol,
-    .line.focus .hljs-bullet,
-    .line.focus .hljs-subst,
-    .line.focus .hljs-meta,
-    .line.focus .hljs-meta .hljs-keyword,
-    .line.focus .hljs-selector-attr,
-    .line.focus .hljs-selector-pseudo,
-    .line.focus .hljs-link {
-      color: #cb4b16;
-    }
-
-    .line.focus .hljs-built_in,
-    .line.focus .hljs-deletion {
-      color: #dc322f;
-    }
-
-    .line.focus .hljs-formula {
-      background: #eee8d5;
-    }
-
-    .line.focus .hljs-emphasis {
-      font-style: italic;
-    }
-
-    .line.focus .hljs-strong {
-      font-weight: bold;
-    }
-
-    .yellow-slide .line.focus:nth-child(2) {
-      background: yellow;
-    }
-
-    .reveal .slides section .code-presenting-annotation {
-      font-size: 70%;
-    }
-    */
-
-    .reveal .slides section .fragment.current-only {
-      visibility: visible;
-      display: none;
-    }
-
-    .reveal .slides section .fragment.current-only.current-fragment {
-      display: block;
-    }
-
-/*
-    .line {
-      display: block;
-    }
-*/
-    .line.focus {
-       opacity: 1.0;
-    } 
-
-    /* .hljs {
-      background: none;
-    } */
-
-    /* .reveal pre {
-      width: 98%;
-      margin: 0px;
-      box-shadow: none;
-    }
-
-    .reveal pre code {
-      font-size: 1.2em;
-      line-height: 1.2;
-      border-radius: 10px;
-      max-height: 60vh !important;
-      overflow: hidden !important;
-    } */
-
-    @media (device-width: 100vw) and (device-height: 100vh) {
-      .reveal pre code {
-        max-height: 50vh !important;
-      }
-    }
-
-    #logo img {
-      max-height: 3.5em;
-      max-width: none;
-      min-width: 50px;
-    }
-
-    .reveal .slides section .code-presenting-annotation {
-      color: white;
-      background: black;
-      padding: 0px 15px;
-      border-radius: 15px;
-      opacity: 0.75 !important;
-      font-size: 50% !important;
-    }
-  </style>
-  <script>
-    if (window.location.search.match(/print-pdf-now/gi)) {
-      window.print();
-    }
-  </script>
+  <link rel="stylesheet" href="revealjs/dist/theme/moon.css" id="theme">
+  <link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
 </head>
-
 <body>
-  
-<div id="logo" style="position: fixed; top: 20px; left: 20px; z-index: 1">
-    <img src="img/EngULogo.png" />
-</div>
-
-
   <div class="reveal">
-
-    <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
 
-      
+<section id="title-slide">
+  <h1 class="title">Demo Reveal JS</h1>
+  <p class="author">Snehangshu Karmakar</p>
+  <p class="date">June 14, 2021</p>
+</section>
 
-
-    
-        <section >
-            
-            <h1><a id="user-content-remote-development--linkedin" class="anchor" href="#remote-development--linkedin" aria-hidden="true"></a>Remote Development @ LinkedIn</h1>
-<p>Ability to run code in a controlled environment somewhere in the cloud</p>
-<p><small>Presented by <a href="https://cinco.linkedin.biz/people/snkarmak?q=Snehangshu%20Karmakar&amp;t=people">Snehangshu Karmakar</a> / @snkarmakar</small></p>
-
-            </section>
-    
-
-
-
-    
-        <section >
-            
-            <h2><a id="user-content-agenda" class="anchor" href="#agenda" aria-hidden="true"></a>Agenda</h2>
+<section>
+<section id="agenda" class="title-slide slide level1">
+<h1>Agenda</h1>
 <ul>
-<li class="fragment fade-in-then-semi-out">Why rdev?</li>
-<li class="fragment fade-in-then-semi-out">How to use rdev?</li>
-<li class="fragment fade-in-then-semi-out">Demo</li>
-<li class="fragment fade-in-then-semi-out">rdev vs rexec</li>
-<li class="fragment fade-in-then-semi-out">Demo</li>
+<li>What is Presentation Framework?</li>
+<li>Features</li>
+<li>How to use it?</li>
+<li>Know more…</li>
 </ul>
-<aside class="notes">
-During this presentation will we learn why rdev is important and how to work with multiproduct which are onboarded to rdev. We will not go into how to onboard a MP. But will definitely talk about how to check of a MP is onboarded.
-</aside>
-            </section>
-    
-
-
-
-    
-    <section>
-        <section >
-            <h2><a id="user-content-why-rdev" class="anchor" href="#why-rdev" aria-hidden="true"></a>Why rdev?</h2>
-<p>Remote development aims to provide:</p>
-<ul>
-<li class="fragment fade-in-then-semi-out">Consistent build environment</li>
-<li class="fragment fade-in-then-semi-out">Predictable fast builds</li>
-<li class="fragment fade-in-then-semi-out">Easy to setup</li>
-</ul>
-<p><img src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" alt="" width="10%" style="border: 0; background: None; box-shadow: None;"></p>
-<p style="font-size: 80%; text-align: left;"><a src="http://go/remote-development">go/remote-development</a></p>
-<aside class="notes">
-- Consistent build environment: As an example, instructors for our bootcamps typically lose a few  hours helping new hires set up their laptops for their first build. This will allow most of these problems would go away in a containerized development environment.
-Remote development environments can provide an effortless way to set up a development environment for new members of a team.
-<ul>
-<li>
-<p>Predictable fast builds: Having the builds happen in machines that are close to the services they need to access (e.g. artifactory, multiproduct backend, etc).</p>
-</li>
-<li>
-<p>In rdev, the bare minimum software required are provided in order to do the development. Thus does not conflict with the version installed on the local machine.</p>
-</li>
-</ul>
-<p>More examples on above point; We run code quality tools as part of the build process. For example flake8 and black for Python MPs, ESLint for JS, etc. Having to build in order to get feedback from these tools is not ideal. Most editors and IDEs can be configured to use these tools, but configuring them can be non-trivial so many developers don’t do it. What’s worse, some IDEs like IntelliJ bundle their own code quality tools that might be different than the ones used during the build, which makes errors confusing.
-Bundling these tools and properly configuring the environment in remote development environments can eliminate this failure mode.</p>
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-how-does-it-help" class="anchor" href="#how-does-it-help" aria-hidden="true"></a>How does it help?</h2>
-<p><img src="img/rdev-arch.png" alt="" :height="60%" width="0%"></p>
-
-            </section>
-        
-            <section >
-                <h2><a id="user-content-architecture" class="anchor" href="#architecture" aria-hidden="true"></a>Architecture</h2>
-<p><img src="img/rdev-arch.svg" alt=""></p>
-<aside class="notes">
-<p>Important points to remember:</p>
-<ul>
-<li>
-<p>Remote container will be archived and deleted after several days of inactivity, so you cannot use it as persistent storage or a backup host.</p>
-</li>
-<li>
-<p>You can have at most three remote host setups(one for each mp). You can use <code>rdev delete &lt;container name&gt;</code> to delete the ones you don’t want to use anymore.</p>
-</li>
-</ul>
-</aside>
-            </section>
-        
-
-    </section>
-    
-
-
-
-    
-    <section>
-        <section data-background="img/rocket.png">
-            <!-- .slide: data-background="img/rocket.png" -->
-<p><br><br><br></p>
-<div id='dark_back' style="text-align: center;">
-<h2><a id="user-content-how-to-use-rdev" class="anchor" href="#how-to-use-rdev" aria-hidden="true"></a>How to use rdev?</h2>
+</section>
+<section id="presentation-on-the-web" class="slide level2">
+<h2>Presentation on the Web</h2>
+<div class="element: fragment">
+<p>Reveal.js is a framework</p>
 </div>
-<p><img src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" alt="" width="10%" style="border: 0; background: None; box-shadow: None;"></p>
-<aside class="notes">
-[rdev commands and their usage](https://iwww.corp.linkedin.com/wiki/cf/display/TOOLS/rdev+commands+and+their+usage)
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-creating-a-new-rdev-environment" class="anchor" href="#creating-a-new-rdev-environment" aria-hidden="true"></a>Creating a new rdev environment</h2>
-<p>Before you run the command, ensure that your multiproduct is onboarded to rdev.</p>
-<pre><code class="language-bash">$ rdev create &lt;MP-NAME&gt; --branch &lt;BRANCH-NAME&gt;
-</code></pre>
-<p class="fragment current-only"><code>mint rdev-init</code> initializes the environment (customize based on MP)</p>
-<p class="fragment current-only">After successful execution rdev environment is handed over to a developer</p>
-<p style="font-size: 80%; text-align: left;"><a src="http://go/rdev-onboarding-doc">go/rdev-onboarding-doc</a></p>
-<aside class="notes">
-<ol>
-<li>
-<p>build → versions → java is the place in product-spec.json to update this regardless of MP type for ligradle commands to work.</p>
+<div class="element: fragment">
+<p>for easily crafting</p>
+</div>
+<div class="element: fragment">
+<p>beautiful presentations</p>
+</div>
+<div class="element: fragment">
+<p>in HTML</p>
+</div>
+<div class="element: fragment">
+<p>You’ll need a browser with support for CSS 3D transforms to see it’s full capabilities.</p>
+</div>
+</section>
+<section id="key-features" class="slide level2">
+<h2>Key Features</h2>
+<ul>
+<li>Slides are created by writing simple HTML</li>
+<li>Presentations are…
+<ul>
+<li>served as HTML + Javascript pages</li>
+<li>can be seen in any device: phones, tablets, desktops</li>
+</ul></li>
+<li>Content can be put under version control</li>
+<li>Git hosting enables collaboration across multiple authors</li>
+</ul>
+</section>
+<section id="what-else.." class="slide level2">
+<h2>What else..?</h2>
+<div>
+<ul>
+<li class="fragment">nested slides</li>
+<li class="fragment">markdown support</li>
+<li class="fragment">auto-animate</li>
+<li class="fragment">PDf export</li>
+<li class="fragment">speaker notes</li>
+<li class="fragment">LaTeX support</li>
+<li class="fragment">syntax highlighting</li>
+</ul>
+</div>
+</section></section>
+<section id="example-presentations" class="title-slide slide level1">
+<h1>Example Presentations</h1>
+<p><a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">https://github.com/hakimel/reveal.js/wiki/Example-Presentations</a> <br><br> Their <a href="http://lab.hakim.se/reveal-js/">orginal slide deck sample content</a> also contains a lot of great example.</p>
+</section>
+
+<section>
+<section id="how-to-use-it" class="title-slide slide level1">
+<h1>How to use it?</h1>
+<div>
+<ol type="1">
+<li class="fragment">Create a new repository.</li>
+<li class="fragment">Use the Reveal.js repository as a <code>git submodule</code>.</li>
+<li class="fragment">Create the <code>slides.md</code> markdown file.<br />
 </li>
-<li>
-<p>A devcontainer.json file in your project tells Visual Studio Code how to access (or create) a development container with a well-defined tool and runtime stack. This container can be used to run an application or to sandbox tools, libraries, or runtimes needed for working with a codebase. It can be used with the Remote - Containers extension.</p>
-</li>
-<li>
-<p>Add the rdev-init command in the product-spec.json.</p>
-</li>
-<li>
-<p>Add “rdev” tag to your Multiproduct. Use mint product edit to add the “rdev” tag</p>
-</li>
-<li>
-<p>Once your changes are committed to master, a new version gets published and mint rdev-init is passing in the rdev, please reach out to <a href="mailto:remote-development-team@linkedin.com">remote-development-team@linkedin.com</a> for enabling forecasting for your MP.</p>
-</li>
+<li class="fragment">Use <code>pandoc</code> to generate the <code>html</code> file.</li>
+<li class="fragment">Use a basic HTTP server to serve the html file.</li>
+<li class="fragment">Browse <code>slides.html</code>, and then commit the changes.</li>
 </ol>
-<p>Ref: <a href="http://go/rdev-enabling-doc">http://go/rdev-enabling-doc</a></p>
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-listing-the-rdev-environments" class="anchor" href="#listing-the-rdev-environments" aria-hidden="true"></a>Listing the rdev environments</h2>
-<pre><code class="language-bash">$ rdev ls
-Name                          | Multiproduct  | Host                                          | Port  | State   | Last Accessed At
-------------------------------+---------------+-----------------------------------------------+-------+---------+---------------------
- training-ghli/agile-gardenia | training-ghli | k8s-0.kubelet.corp-lva1.ard.corp.linkedin.com | 30365 | RUNNING | 2021-05-31 16:16:12
-</code></pre>
-
-            </section>
-        
-            <section >
-                <h2><a id="user-content-connecting-to-a-rdev-instance" class="anchor" href="#connecting-to-a-rdev-instance" aria-hidden="true"></a>Connecting to a rdev instance</h2>
-<pre><code class="language-bash">$ rdev ssh training-ghli/agile-gardenia
-✔ Successfully updated local configuration
-✔ Starting ssh connection to training-ghli/agile-gardenia
-** tmux mode started **
-Command Menu
-----------------------------
-esc    Detach cleanly.
-  X    Force-quit tmux mode.
-  L    Toggle logging.
-  C    Run tmux command.
-</code></pre>
-<ul>
-<li>Uses <code>tmux</code> to leave terminal sessions running
-<ul>
-<li>Allows you to detach and re-attach without interrupting the running process</li>
-</ul>
-</li>
-<li>Enables a number of terminals open each running a separate process</li>
-</ul>
-
-            </section>
-        
-            <section >
-                <h2><a id="user-content-details-of-a-rdev-environment" class="anchor" href="#details-of-a-rdev-environment" aria-hidden="true"></a>Details of a rdev Environment</h2>
-<pre><code class="language-bash">$ rdev info training-ghli/agile-gardenia
-✔ Successfully fetched environment info for training-ghli/agile-gardenia
-
- Rdev Name    | training-ghli/agile-gardenia
- Product Name | training-ghli
- Developer    | snkarmak
- Host         | k8s-0.kubelet.corp-lva1.ard.corp.linkedin.com
- Port         | 30365
- State        | RUNNING
-</code></pre>
-
-            </section>
-        
-            <section >
-                <h2><a id="user-content-open-rdev-environment-in-vscode" class="anchor" href="#open-rdev-environment-in-vscode" aria-hidden="true"></a>Open rdev Environment in VSCode</h2>
-<pre><code class="language-bash">$ rdev code training-ghli/agile-gardenia
-✔ Successfully updated local configuration
-✔ Starting VS Code for training-ghli/agile-gardenia
-</code></pre>
-<p><img src="img/rdev-code.png" alt="" width="70%"></p>
-<aside class="notes">
-You need to install these extensions:
-<ul>
-<li>
-<p><a href="https://code.visualstudio.com/docs/remote/ssh">Remote SSH</a>: Keep your source code and run your tools on your Linux desktop. Edit on your MacBook.</p>
-</li>
-<li>
-<p>GitLens - Git supercharged: Provides amazing git integration. Excellent for seeing line or file history, comparing between revisions, etc.</p>
-</li>
-<li>
-<p>To add a new extension, please follow the below steps:</p>
-<ul>
-<li>Verify if the extension is ELRed and is available in artifactory.</li>
-<li>If the extension or its desired version is not available in artifactory, then follow the steps here to elr the extension. Once the extenson is successfully ELRed, add the name of the extension to the .devcontainer/devcontainer.json file of the Multiproduct and commit the changes.</li>
-<li>Next rdev created with this latest version of the Multiproduct will have the new extension installed in it.</li>
-</ul>
-</li>
-</ul>
-<p>Important: If you want to enable using rdev to build in crt, you have to set the build-in-rdev flag in your mp.(<a href="https://go/build-in-container">https://go/build-in-container</a>)</p>
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-connecting-to-tmux-session" class="anchor" href="#connecting-to-tmux-session" aria-hidden="true"></a>Connecting to TMUX Session</h2>
-<p>You could then use the terminal in VSCode and attach to the tmux session by using the command.</p>
-<pre><code class="language-bash">[snkarmak@agile-gardenia training-ghli]$ tmux attach
-</code></pre>
-<p><img src="img/tmux-attach.png" alt=""></p>
-
-            </section>
-        
-            <section >
-                <h2><a id="user-content-delete-a-rdev-instance" class="anchor" href="#delete-a-rdev-instance" aria-hidden="true"></a>Delete a Rdev Instance</h2>
-<pre><code class="language-bash">$ rdev delete training-ghli/agile-gardenia
-✔ Successfully marked remote development environment training-ghli/agile-gardenia for deletion.
-</code></pre>
-
-            </section>
-        
-
-    </section>
-    
-
-
-
-    
-    <section>
-        <section data-background="img/blocks-cubes-letter-cubes-1887614.jpeg">
-            <!-- .slide: data-background="img/blocks-cubes-letter-cubes-1887614.jpeg" -->
-<h1><a id="user-content-rdev-vs-rexec" class="anchor" href="#rdev-vs-rexec" aria-hidden="true"></a>rdev vs rexec</h1>
-<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 2px; font-size: 30px; text-align: left">
-<p>Remote Execution (<code>rexec</code>) executes the command remotely inside a container, after syncing the state of the local MP with the remote host.</p>
 </div>
-<p><span id='bright'>Whereas</span></p>
-<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 2px; font-size: 30px; text-align: left;">
-<p>Remote Development (<code>rdev</code>) is a container running on a faster host in corp fabric with limited software necessary for development. rexec is a capability added to rdev.</p>
+</section>
+<section id="demo" class="slide level2">
+<h2>Demo</h2>
+</section>
+<section id="section" class="slide level2" data-background-video="demo.mp4" data-background-size="auto">
+<h2 data-background-video="demo.mp4" data-background-size="auto"></h2>
+</section>
+<section id="how-to-create-the-markdown-file" class="slide level2">
+<h2>How to create the markdown file</h2>
+<img data-src="https://media.giphy.com/media/lqFyE7I04jpDci8UzF/giphy.gif" style="border: 0; background: None; box-shadow: None;" style="width:1.0%" />
+<div id="dark_back" style="font-size: 50%;">
+<p>If you want the benefits of reveal.js without having to write HTML or Markdown try <a href="https://slides.com">https://slides.com</a>. It’s a fully-featured visual editor and platform for reveal.js, by the same creator.</p>
 </div>
-<p><img src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" alt="" width="10%" style="border: 0; background: None; box-shadow: None;"></p>
-<div style="font-size: 80%; text-align: left;"><a src="http://go/rexec">go/rexec</a></div>
-<aside class="notes">
-Remote Development(rdev) is a container running on a faster host in corp with limited software necessary for development. Remote Execution(rexec) is a capability added to rdev. In its original form, rdev keeps your source code in a remote host, which you can access via ssh and you can use tools like VS Code with the Remote SSH extension to work completely remotely. For some workflows especially for backend developer and projects that use Java/Python/Scala, it’s more convenient to keep the source code on the local host and execute the commands remotely, after syncing the state of the local MP with the remote host. This is where rdev exec (shortened to rexec) comes into play. 
-<p>Our IDE team has also integrated rexec with IntelliJ for a seamless experience (go/rexec-demo).</p>
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-how-rexec-works" class="anchor" href="#how-rexec-works" aria-hidden="true"></a>How rexec works?</h2>
-<p><img src="img/rexec.png" alt=""></p>
-<aside class="notes">
-You can check if they are present on your laptop by running the following:
-- `rexec --help`
-- `mutagen --help`
-<p>When a developer runs the rexec CLI in some multiproduct directory for the first time, it creates a new mutagen session responsible for moving files from local to the remote machine and back.</p>
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-using-rexec-commands" class="anchor" href="#using-rexec-commands" aria-hidden="true"></a>Using rexec commands</h2>
-<pre><code class="language-bash">$ mint checkout bootcamp-backend
-$ cd bootcamp-backend_trunk
-$ rexec mint build
-The rdev bootcamp-backend/ancient-otter is not running. Creating a new rdev for the execution
-✔ Rdev bootcamp-backend/agile-ivy created
+</section>
+<section id="code-in-your-slides" class="slide level2">
+<h2>Code in your slides</h2>
+<p>Syntax highlighting, including line numbers.</p>
+<pre data-id="code-animation"><code class="java" data-line-numbers="2|3,4|6-8">    import java.jdbc.*;
+    public class Foo extends Bar {
+      private String a;
+      private final int X = 42;
 
- Name                       | Multiproduct     | Host                            | Port  | State   | Last Accessed At
-----------------------------+------------------+---------------------------------+-------+---------+------------------
- bootcamp-backend/agile-ivy | bootcamp-backend | lva1-app10602.corp.linkedin.com | 59019 | RUNNING | None
+      public String toString() {
+        // implement this method
+      }
 
-You can now use bootcamp-backend/agile-ivy.
-Try `rdev ssh bootcamp-backend/agile-ivy` or `rdev code bootcamp-backend/agile-ivy`.
-Preparing to transfer authentication tokens to the rdevs. You might be asked to input your LNKDPROD password or OTP token.
-Symantec VIP MFA:
-Uploading ssh public key
-⠋ Syncing files with bootcamp-backend_agile-ivy
-Running `mint build` in bootcamp-backend_agile-ivy:~/bootcamp-backend
-...
-$ rexec ligradle test
-</code></pre>
-<aside class="notes">
-The rexec CLI has a --tunnel option that makes some remote ports available locally.
-<p><code>rexec --tunnel 12345 'mint build &amp;&amp; mint build-cfg -f dev &amp;&amp; mint deploy -f dev &amp;&amp; cat'</code></p>
-<ul>
-<li>Let’s imagine that you need to deploy a web-service that works on port 12345:</li>
-<li><code>curl http://localhost:12345/api/v1</code></li>
-</ul>
-<p>Another such example with mid-tier app:
-<code>rexec   --tunnel &lt;port&gt; ligradle :subproject:runPlayBinary</code></p>
-</aside>
-            </section>
-        
-
-    </section>
-    
-
-
-
-    
-    <section>
-        <section >
-            <h2><a id="user-content-enabling-rdev-in-li-idea" class="anchor" href="#enabling-rdev-in-li-idea" aria-hidden="true"></a>Enabling rdev in LI IDEA</h2>
-<ol>
-<li>Start LI IDEA</li>
-<li>Go to <strong>Preferences <span aria-label="and then">&gt;</span> LinkedIn <span aria-label="and then">&gt;</span> General</strong>.</li>
-<li>Check the <strong>Enable Rdev menu</strong> checkbox.
-<img src="img/idea-enable.png" alt="" width="60%"></li>
-<li>Restart LI IDEA.
-<br>
-<span id="bright" style="font-size: 20px">Supported LI IDEA version: 2020.3.3.0</span></li>
-</ol>
-<p><img src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" alt="" width="10%" style="border: 0; background: None; box-shadow: None;"></p>
-<p style="font-size: 80%; text-align: left;"><a src="http://go/rdev-idea">go/rdev-idea</a></p>
-<aside class="notes">
-[go/rdev-idea](http://go/rdev-idea)
-</aside>
-            </section>
-        
-            <section >
-                <h2><a id="user-content-rdev-menu-in-li-idea" class="anchor" href="#rdev-menu-in-li-idea" aria-hidden="true"></a>Rdev Menu in LI IDEA</h2>
-<p><img src="img/rdev-menu.png" alt="" width="30%"></p>
-
-            </section>
-        
-
-    </section>
-    
-
-
-
-    
-        <section data-background="img/questions.jpeg">
-            
-            <!-- .slide: data-background="img/questions.jpeg" -->
-<div id='dark_back'>
-<h1><a id="user-content-questions" class="anchor" href="#questions" aria-hidden="true"></a>Questions?</h1>
+      // more stuff here
+    }</code></pre>
+</section>
+<section id="transition-styles" class="slide level2">
+<h2>Transition Styles</h2>
+<div class="element: fragment">
+<p style="font-size: 50%;">
+Fade in
+</p>
+<pre ><code >:::{.element: class="fragment"}
+Fade in
+:::</code></pre>
 </div>
-            </section>
-    
+<div class="element: fragment fade-out">
+<p style="font-size: 50%;">
+Fade out
+</p>
+</div>
+<div class="element: fragment highlight-red">
+<p style="font-size: 50%;">
+Highlight red
+</p>
+<pre ><code >:::{.element: class="fragment highlight-red"}
+Highlight red
+:::</code></pre>
+</div>
+<div class="element: fragment fade-in-then-out">
+<p style="font-size: 50%;">
+Fade in, then out
+</p>
+</div>
+<div class="element: fragment fade-up">
+<p style="font-size: 50%;">
+Slide up while fading in
+</p>
+</div>
+</section>
+<section id="speaker-notes" class="slide level2">
+<h2>Speaker Notes</h2>
+<p>Wrtite speaker notes:</p>
+<pre ><code class="markdown">::: notes
 
+Speaker notes
 
+:::</code></pre>
+<p>Press <kbd>S</kbd> to see the <strong>Speaker View</strong>.</p>
+<aside class="notes">
+<p>speaker notes</p>
+</aside>
+</section></section>
+<section id="section-1" class="title-slide slide level1" data-background="img/questions.jpeg">
+<h1 data-background="img/questions.jpeg"></h1>
+<h1 style="color:#cb4154;">
+Questions?
+</h1>
+</section>
 
-    
-        <section data-background="img/thankyou.jpeg" data-background-size="cover">
-            
-            <!-- .slide: data-background="img/thankyou.jpeg" data-background-size="cover" -->
+<section id="section-2" class="title-slide slide level1" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain">
+<h1 data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain"></h1>
 <style>
-
-#bright {
-  color: deeppink;
+.left {
+      text-align: left;
+}
+    
+.smallsize {
+      font-size: 25px;
+}
+body {
+/* make it totally black */
+background-color: black;
 }
 
-#left {
-	margin: 10px 0 15px 20px;
-	text-align: center;
-	float: left;
-	z-index:-10;
-	width:48%;
-	font-size: 0.85em;
-	line-height: 1.5;
+.container {
+display: flex;
 }
 
-#right {
-	margin: 10px 0 15px 0;
-	float: right;
-	text-align: center;
-	z-index:-10;
-	width:48%;
-	font-size: 0.85em;
-	line-height: 1.5;
+.col {
+flex: 1
 }
 
-#dark_back {
+.dark_back {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
-  padding: 20px;
+  padding: 5px;
 }
-
 </style>
-            </section>
-    
-
-
+</section>
     </div>
-
-
   </div>
 
-  <script src="libs/reveal.js/3.8.0/lib/js/head.min.js"></script>
-  <script src="libs/reveal.js/3.8.0/js/reveal.js"></script>
+  <script src="revealjs/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="revealjs/plugin/notes/notes.js"></script>
+  <script src="revealjs/plugin/search/search.js"></script>
+  <script src="revealjs/plugin/zoom/zoom.js"></script>
+  <script src="revealjs/plugin/highlight/highlight.js"></script>
 
   <script>
 
-    // More info https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-
-        controls: true,
-        controlsTutorial: true,
-        controlsLayout: 'bottom-right',
-        controlsBackArrows: 'faded',
-        progress: true,
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display the page number of the current slide
         slideNumber: true,
+        // Push each slide change to the browser history
         history: true,
-        keyboard: true,
-        overview: true,
-        center: true,
-        touch: true,
-        loop: false,
-        rtl: false,
-        shuffle: false,
-        fragments: true,
-        fragmentInURL: false,
-        embedded: false,
-        help: true,
-        showNotes: false,
-        autoPlayMedia: false,
-        autoSlide: 0,
-        autoSlideStoppable: true,
-        autoSlideMethod: Reveal.navigateNext,
-        defaultTiming: 120,
-        mouseWheel: false,
-        hideAddressBar: true,
-        previewLinks: false,
-        transition: 'slide',
-        transitionSpeed: 'default',
-        backgroundTransition: 'default',
-        viewDistance: 3,
-        parallaxBackgroundImage: '',
-        parallaxBackgroundSize: '',
-        parallaxBackgroundHorizontal: 0,
-        parallaxBackgroundVertical: 0,
-        display: 'block',
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-        // More info https://github.com/hakimel/reveal.js#dependencies
-        dependencies: [
-            // { src: 'libs/reveal.js/3.8.0/lib/js/classList.js', condition: function () { return !document.body.classList; } },
-            // { src: 'libs/reveal.js/3.8.0/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
-            // { src: 'libs/reveal.js/3.8.0/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
-            // { src: 'libs/reveal.js/3.8.0/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
-            { src: 'libs/reveal.js/3.8.0/plugin/notes/notes.js', async: true },
-            { src: 'libs/reveal.js/3.8.0/plugin/chart/Chart.min.js' },
-            { src: 'libs/reveal.js/3.8.0/plugin/chart/csv2chart.js' },
-            { src: 'libs/reveal.js/3.8.0/plugin/embed-tweet/embed-tweet.js' },
-            { src: 'libs/reveal.js/3.8.0/plugin/math/math.js', async: true },
-            { src: 'libs/highlight.js/9.12.0/highlight.js', async: true },
-            { src: 'libs/reveal.js/3.8.0/plugin/anything/anything.js' },
-            { src: 'libs/reveal.js/3.8.0/plugin/mermaid/mermaid.min.js', async: true, callback: function() {mermaid.initialize({startOnLoad:false})} },	
-
-           
-        { src: 'libs/reveal.js/3.8.0/plugin/search/search.js', async: true },
-           
-
-           
-        { src: 'libs/reveal.js/3.8.0/plugin/zoom-js/zoom.js', async: true },
-            
-
-            
-        { src: 'libs/reveal.js/3.8.0/plugin/chalkboard/chalkboard.js' },
-            
-
-            
-        { src: 'libs/reveal.js/3.8.0/plugin/menu/menu.js' },
-            
-
-            
-        { src: 'libs/reveal.js/3.8.0/plugin/title-footer/title-footer.js', async: true, callback: function () { title_footer.initialize(); } },
-            
-
-        {
-            src: 'libs/highlight.js/9.12.0/reveal-code-focus-1.0.0-mod.js',
-            async: true,
-            callback: function () {
-                RevealCodeFocus();
-            }
-        },
-            // { src: 'libs/reveal.js/3.8.0/plugin/reveal-code-focus/highlight.pack.js' },
-            // { src: 'libs/reveal.js/3.8.0/plugin/reveal-code-focus/reveal-code-focus.js', async: true, callback: function() { RevealCodeFocus(); } },
-           // {src: 'libs/reveal.js/3.8.0/plugin/line-numbers/line-numbers.js'}
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
         ]
-        ,
-    keyboard: {
-        67: function () { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
-        66: function () { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
-        46: function () { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
-        8: function () { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
-        68: function () { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
-    },
-    math: {
-       // mathjax: 'libs/reveal.js/3.8.0/plugin/math/MathJax.js',
-             mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-            config: 'TeX-AMS_HTML-full'
-    },
-    chart: {
-        defaults: {
-            global: {
-                title: { fontColor: "#FFF" },
-                legend: {
-                    position: "bottom",
-                        labels: { fontColor: "#FFF" },
-                },
-                tooltips: {
-                    labels: { fontColor: "#FFF" },
-                },
-            },
-            scale: {
-                scaleLabel: { fontColor: "#FFF" },
-                gridLines: { color: "#FFF", zeroLineColor: "#FFF" },
-                ticks: { fontColor: "#FFF" },
-            }
-        },
-        line: { borderColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"], "borderDash": [[5, 10], [0, 0]] },
-        bar: { backgroundColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"] },
-        pie: { backgroundColor: [["rgba(0,0,0,.8)", "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"]] },
-        radar: { borderColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"] },
-    },
-    anything: [ 
-	 {
-	  className: "mermaid"
-	 },
-	 // ...
-	],
-    menu: {
-        // Specifies which side of the presentation the menu will 
-        // be shown. Use 'left' or 'right'.
-        side: 'left',
-
-            // Specifies the width of the menu.
-            // Can be one of the following:
-            // 'normal', 'wide', 'third', 'half', 'full', or
-            // any valid css length value
-            width: 'normal',
-
-                // Add slide numbers to the titles in the slide list.
-                // Use 'true' or format string (same as reveal.js slide numbers)
-                numbers: false,
-
-                    // Specifies which slide elements will be used for generating
-                    // the slide titles in the menu. The default selects the first
-                    // heading element found in the slide, but you can specify any
-                    // valid css selector and the text from the first matching
-                    // element will be used.
-                    // Note: that a section data-menu-title attribute or an element
-                    // with a menu-title class will take precedence over this option
-                    titleSelector: 'h1, h2, h3, h4, h5, h6',
-
-                        // If slides do not have a matching title, attempt to use the
-                        // start of the text content as the title instead
-                        useTextContentForMissingTitles: false,
-
-                            // Hide slides from the menu that do not have a title.
-                            // Set to 'true' to only list slides with titles.
-                            hideMissingTitles: false,
-
-                                // Adds markers to the slide titles to indicate the 
-                                // progress through the presentation. Set to 'false'
-                                // to hide the markers.
-                                markers: true,
-
-                                    // Specify custom panels to be included in the menu, by
-                                    // providing an array of objects with 'title', 'icon'
-                                    // properties, and either a 'src' or 'content' property.
-                                    // custom: false,
-                                    custom: [],
-                                        // Specifies the themes that will be available in the themes
-                                        // menu panel. Set to 'true' to show the themes menu panel
-                                        // with the default themes list. Alternatively, provide an
-                                        // array to specify the themes to make available in the
-                                        // themes menu panel, for example...
-                                        // [
-                                        //     { name: 'Black', theme: 'css/theme/black.css' },
-                                        //     { name: 'White', theme: 'css/theme/white.css' },
-                                        //     { name: 'League', theme: 'css/theme/league.css' }
-                                        // ]
-                                        themes: false,
-
-                                            // Specifies the path to the default theme files. If your
-                                            // presentation uses a different path to the standard reveal
-                                            // layout then you need to provide this option, but only
-                                            // when 'themes' is set to 'true'. If you provide your own 
-                                            // list of themes or 'themes' is set to 'false' the 
-                                            // 'themesPath' option is ignored.
-                                            themesPath: 'css/theme/',
-
-                                                // Specifies if the transitions menu panel will be shown.
-                                                // Set to 'true' to show the transitions menu panel with
-                                                // the default transitions list. Alternatively, provide an
-                                                // array to specify the transitions to make available in
-                                                // the transitions panel, for example...
-                                                // ['None', 'Fade', 'Slide']
-                                                transitions: false,
-
-                                                    // Adds a menu button to the slides to open the menu panel.
-                                                    // Set to 'false' to hide the button.
-                                                    openButton: true,
-
-                                                        // If 'true' allows the slide number in the presentation to
-                                                        // open the menu panel. The reveal.js slideNumber option must 
-                                                        // be displayed for this to take effect
-                                                        openSlideNumber: false,
-
-                                                            // If true allows the user to open and navigate the menu using
-                                                            // the keyboard. Standard keyboard interaction with reveal
-                                                            // will be disabled while the menu is open.
-                                                            keyboard: true,
-
-                                                                // Normally the menu will close on user actions such as
-                                                                // selecting a menu item, or clicking the presentation area.
-                                                                // If 'true', the sticky option will leave the menu open
-                                                                // until it is explicitly closed, that is, using the close
-                                                                // button or pressing the ESC or m key (when the keyboard 
-                                                                // interaction option is enabled).
-                                                                sticky: false,
-
-                                                                    // If 'true' standard menu items will be automatically opened
-                                                                    // when navigating using the keyboard. Note: this only takes 
-                                                                    // effect when both the 'keyboard' and 'sticky' options are enabled.
-                                                                    autoOpen: true,
-
-                                                                        // If 'true' the menu will not be created until it is explicitly
-                                                                        // requested by calling RevealMenu.init(). Note this will delay
-                                                                        // the creation of all menu panels, including custom panels, and
-                                                                        // the menu button.
-                                                                        delayInit: false,
-
-                                                                            // If 'true' the menu will be shown when the menu is initialised.
-                                                                            openOnInit: false,
-
-                                                                                // By default the menu will load it's own font-awesome library
-                                                                                // icons. If your presentation needs to load a different
-                                                                                // font-awesome library the 'loadIcons' option can be set to false
-                                                                                // and the menu will not attempt to load the font-awesome library.
-                                                                                loadIcons: false
-    },
-    chalkboard: {
-        toggleChalkboardButton: { left: "60px", bottom: "30px", top: "auto", right: "auto" },
-        toggleNotesButton: { left: "90px", bottom: "30px", top: "auto", right: "auto" },
-
-    }
-    });
-
-
-
-</script>
-</body>
-
+      });
+    </script>
+    </body>
 </html>
