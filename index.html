@@ -34,15 +34,27 @@
 </section>
 
 <section>
+<section id="navigating" class="title-slide slide level1">
+<h1>Navigating</h1>
+<p>Slides can be nested inside of each other.</p>
+<p>Use the buttons below for navigating:</p>
+<p> <a href="#" onclick="goUp(); return false;"><i class="fa fa-chevron-up"></i></a> <br/>  <a href="#" onclick="goPrev(); return false;"><i class="fa fa-chevron-left"></i></a>        <a href="#" onclick="goNext(); return false;"><i class="fa fa-chevron-right"></i></a> <br/>  <a href="#" onclick="goDown(); return false;"><i class="fa fa-chevron-down"></i></a> </p>
+<p><strong>Or</strong> press the <kbd>Space</kbd> key to navigate through all slides.</p>
+</section>
+<section id="navigatingto-menu" class="slide level2">
+<h2>Navigating…to menu</h2>
+<p>See the  <a href="#" onclick="toggleMenu(); return false;"><i class="fa fa-bars"></i></a>  in the corner?</p>
+<p>Click it and the menu will open from the side,<br/> or press the <kbd>M</kbd> key. <br> Click anywhere on the slide to return to the presentation,<br /> or use the close button in the menu.</p>
+</section></section>
+<section>
 <section id="agenda" class="title-slide slide level1">
 <h1>Agenda</h1>
 <ul>
 <li>Presentation Framework</li>
 <li>Features</li>
-<li>Get started</li>
+<li>Getting started</li>
 <li>Explore to see interesting features</li>
 </ul>
-<p><img data-src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" style="max-width: 10%; border: 0; background: None; box-shadow: None;" /></p>
 </section>
 <section id="presentation-on-the-web" class="slide level2">
 <h2>Presentation on the Web</h2>
@@ -88,12 +100,11 @@
 <li class="fragment">syntax highlighting</li>
 </ul>
 </div>
-</section></section>
-<section id="example-presentations" class="title-slide slide level1">
-<h1>Example Presentations</h1>
-<p><a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">https://github.com/hakimel/reveal.js/wiki/Example-Presentations</a> <br><br> Their <a href="http://lab.hakim.se/reveal-js/">orginal slide deck sample content</a> also contains a lot of great example.</p>
 </section>
-
+<section id="example-presentations" class="slide level2">
+<h2>Example Presentations</h2>
+<p><a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">https://github.com/hakimel/reveal.js/wiki/Example-Presentations</a> <br><br> Their <a href="http://lab.hakim.se/reveal-js/">orginal slide deck sample content</a> also contains a lot of great example.</p>
+</section></section>
 <section>
 <section id="how-to-use-it" class="title-slide slide level1">
 <h1>How to use it?</h1>
@@ -193,6 +204,24 @@ Questions?
 
 <section id="section-1" class="title-slide slide level1" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain">
 <h1 data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain"></h1>
+<script>
+toggleMenu = () => {
+        let menu = Reveal.getPlugin('menu');
+        if (menu) menu.toggle();
+      };
+goNext = () => {
+        Reveal.next();
+      };
+goPrev = () => {
+        Reveal.prev();
+      };
+goDown = () => {
+        Reveal.down();
+      };
+goUp = () => {
+        Reveal.up();
+      };
+</script>
 <style>
 .left {
       text-align: left;
