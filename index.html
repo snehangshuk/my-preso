@@ -22,6 +22,25 @@
   </style>
   <link rel="stylesheet" href="revealjs/dist/theme/moon.css" id="theme">
   <link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="custom/custom.css"/>
+  <script>
+  toggleMenu = () => {
+          let menu = Reveal.getPlugin('menu');
+          if (menu) menu.toggle();
+        };
+  goNext = () => {
+          Reveal.next();
+        };
+  goPrev = () => {
+          Reveal.prev();
+        };
+  goDown = () => {
+          Reveal.down();
+        };
+  goUp = () => {
+          Reveal.up();
+        };
+  </script>
 </head>
 <body>
   <div class="reveal">
@@ -143,7 +162,8 @@
 </section>
 <section id="how-to-create-the-markdown-file" class="slide level2">
 <h2>How to create the markdown file</h2>
-<img data-src="https://media.giphy.com/media/lqFyE7I04jpDci8UzF/giphy.gif" style="border: 0; background: None; box-shadow: None;" style="width:1.0%" />
+<p><img data-src="https://media.giphy.com/media/lqFyE7I04jpDci8UzF/giphy.gif" style="max-width: 15%; border: 0; background: None; box-shadow: None;" /></p>
+<p>View the markdown of this presention at <small><a href="https://github.com/snehangshuk/demo-revealjs">https://github.com/snehangshuk/demo-revealjs</a></small></p>
 <div id="dark_back" style="font-size: 50%;">
 <p>If you want the benefits of reveal.js without having to write HTML or Markdown try <a href="https://slides.com">https://slides.com</a>. It’s a fully-featured visual editor and platform for reveal.js, by the same creator.</p>
 </div>
@@ -169,9 +189,6 @@
 <p style="font-size: 50%;">
 Fade in
 </p>
-<pre ><code >:::{.element: class="fragment"}
-Fade in
-:::</code></pre>
 </div>
 <div class="element: fragment fade-out">
 <p style="font-size: 50%;">
@@ -182,9 +199,6 @@ Fade out
 <p style="font-size: 50%;">
 Highlight red
 </p>
-<pre ><code >:::{.element: class="fragment highlight-red"}
-Highlight red
-:::</code></pre>
 </div>
 <div class="element: fragment fade-in-then-out">
 <p style="font-size: 50%;">
@@ -217,54 +231,13 @@ Questions?
 </h1>
 </section>
 
-<section id="section-1" class="title-slide slide level1" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain">
-<h1 data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="contain"></h1>
-<script>
-toggleMenu = () => {
-        let menu = Reveal.getPlugin('menu');
-        if (menu) menu.toggle();
-      };
-goNext = () => {
-        Reveal.next();
-      };
-goPrev = () => {
-        Reveal.prev();
-      };
-goDown = () => {
-        Reveal.down();
-      };
-goUp = () => {
-        Reveal.up();
-      };
-</script>
-<style>
-.left {
-      text-align: left;
-}
-    
-.smallsize {
-      font-size: 25px;
-}
-body {
-/* make it totally black */
-background-color: black;
-}
+<section id="section-1" class="title-slide slide level1" data-background-color="blue-powder" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="auto 75%">
+<h1 data-background-color="blue-powder" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="auto 75%"></h1>
 
-.container {
-display: flex;
-}
-
-.col {
-flex: 1
-}
-
-.dark_back {
-  background-color: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  padding: 5px;
-}
-</style>
 </section>
+    </div>
+    <div class="fe-persistent-header">
+      <a href="https://cinco.linkedin.biz/people/snkarmak?q=Snehangshu%20Karmakar&t=people">@snkarmakar</a>
     </div>
   </div>
 
