@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Snehangshu Karmakar">
+  <meta name="dcterms.date" content="2021-06-14">
+  <title>Demo Reveal JS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="revealjs/dist/reset.css">
+  <link rel="stylesheet" href="revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="revealjs/dist/theme/moon.css" id="theme">
+  <link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="custom/custom.css"/>
+  <script>
+  toggleMenu = () => {
+          let menu = Reveal.getPlugin('menu');
+          if (menu) menu.toggle();
+        };
+  goNext = () => {
+          Reveal.next();
+        };
+  goPrev = () => {
+          Reveal.prev();
+        };
+  goDown = () => {
+          Reveal.down();
+        };
+  goUp = () => {
+          Reveal.up();
+        };
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Demo Reveal JS</h1>
+  <p class="author">Snehangshu Karmakar</p>
+  <p class="date">June 14, 2021</p>
+</section>
+
+<section>
+<section id="navigating" class="title-slide slide level1">
+<h1>Navigating</h1>
+<p>Slides can be nested inside of each other.</p>
+<p>Use the buttons below for navigating:</p>
+<p> <a href="#" onclick="goUp(); return false;"><i class="fa fa-chevron-up"></i></a> <br/>  <a href="#" onclick="goPrev(); return false;"><i class="fa fa-chevron-left"></i></a>        <a href="#" onclick="goNext(); return false;"><i class="fa fa-chevron-right"></i></a> <br/>  <a href="#" onclick="goDown(); return false;"><i class="fa fa-chevron-down"></i></a> </p>
+<p><strong>Or</strong> press the <kbd>Space</kbd> key to navigate through all slides.</p>
+</section>
+<section id="navigatingto-menu" class="slide level2">
+<h2>Navigating…to menu</h2>
+<p>See the  <a href="#" onclick="toggleMenu(); return false;"><i class="fa fa-bars"></i></a>  in the corner?</p>
+<p>Click it and the menu will open from the side,<br/> or press the <kbd>M</kbd> key. <br> Click anywhere on the slide to return to the presentation,<br /> or use the close button in the menu.</p>
+</section>
+<section id="take-a-moment" class="slide level2">
+<h2>Take a Moment</h2>
+<div>
+<ul>
+<li class="fragment">Press <code>B</code> or <code>.</code> on your keyboard to enter or exit the ‘paused’ mode.</li>
+<li class="fragment">Press <code>O</code> on your keyboard to enter the ‘overview’ mode.</li>
+<li class="fragment">Press <code>F</code> on your keyboard to view your presentation in the ‘fullscreen’ mode.</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Press <code>B</code> or <code>.</code> on your keyboard to enter or exit the ‘paused’ mode. This mode is helpful when you want to take distracting slides off the screen during a presentation.</p>
+<p>Press <code>O</code> on your keyboard to enter the ‘overview’ mode. While you’re in this mode, you can still navigate between slides, as if you were at 1,000 feet above your presentation.</p>
+<p>Press <code>F</code> on your keyboard to view your presentation in the ‘fullscreen’ mode. Once in fullscreen mode, press the <code>ESC</code> key to exit.</p>
+</aside>
+</section></section>
+<section>
+<section id="agenda" class="title-slide slide level1">
+<h1>Agenda</h1>
+<ul>
+<li>Presentation Framework</li>
+<li>Features</li>
+<li>Getting started</li>
+<li>Explore to see interesting features</li>
+</ul>
+</section>
+<section id="presentation-on-the-web" class="slide level2">
+<h2>Presentation on the Web</h2>
+<div class="element: fragment">
+<p>Reveal.js is a framework</p>
+</div>
+<div class="element: fragment">
+<p>for easily crafting</p>
+</div>
+<div class="element: fragment">
+<p>beautiful presentations</p>
+</div>
+<div class="element: fragment">
+<p>in HTML</p>
+</div>
+<div class="element: fragment">
+<p>You’ll need a browser with support for CSS 3D transforms to see it’s full capabilities.</p>
+</div>
+</section>
+<section id="key-features" class="slide level2">
+<h2>Key Features</h2>
+<ul>
+<li>Slides are created by writing simple HTML</li>
+<li>Presentations are…
+<ul>
+<li>served as HTML + Javascript pages</li>
+<li>can be seen in any device: phones, tablets, desktops</li>
+</ul></li>
+<li>Content can be put under version control</li>
+<li>Git hosting enables collaboration across multiple authors</li>
+</ul>
+</section>
+<section id="what-else.." class="slide level2">
+<h2>What else..?</h2>
+<div>
+<ul>
+<li class="fragment">nested slides</li>
+<li class="fragment">markdown support</li>
+<li class="fragment">auto-animate</li>
+<li class="fragment">PDF export</li>
+<li class="fragment">speaker notes</li>
+<li class="fragment">LaTeX support</li>
+<li class="fragment">syntax highlighting</li>
+</ul>
+</div>
+</section>
+<section id="example-presentations" class="slide level2">
+<h2>Example Presentations</h2>
+<p><a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">https://github.com/hakimel/reveal.js/wiki/Example-Presentations</a> <br><br> Their <a href="http://lab.hakim.se/reveal-js/">orginal slide deck sample content</a> also contains a lot of great example.</p>
+</section></section>
+<section>
+<section id="how-to-use-it" class="title-slide slide level1">
+<h1>How to use it?</h1>
+<div>
+<ol type="1">
+<li class="fragment">Create a new repository.</li>
+<li class="fragment">Use the Reveal.js repository as a <code>git submodule</code>.</li>
+<li class="fragment">Create the <code>slides.md</code> markdown file.<br />
+</li>
+<li class="fragment">Use <code>pandoc</code> to generate the <code>html</code> file.</li>
+<li class="fragment">Use a basic HTTP server to serve the html file.</li>
+<li class="fragment">Browse <code>slides.html</code>, and then commit the changes.</li>
+</ol>
+</div>
+<p><img data-src="https://media.giphy.com/media/8wbpmeim0LmdW/giphy.gif" style="max-width: 10%; border: 0; background: None; box-shadow: None;" /></p>
+</section>
+<section id="demo" class="slide level2">
+<h2>Demo</h2>
+<iframe data-src="https://drive.google.com/file/d/1wK3HtgA5nnU6kJUshBSqwdzztjs0LjXh/preview" width="640" height="480" data-preload>
+</iframe>
+</section>
+<section id="how-to-create-the-markdown-file" class="slide level2">
+<h2>How to create the markdown file</h2>
+<p><img data-src="https://media.giphy.com/media/lqFyE7I04jpDci8UzF/giphy.gif" style="max-width: 15%; border: 0; background: None; box-shadow: None;" /></p>
+<p>View the markdown of this presention at <small><a href="https://github.com/snehangshuk/demo-revealjs">https://github.com/snehangshuk/demo-revealjs</a></small></p>
+<div id="dark_back" style="font-size: 50%;">
+<p>If you want the benefits of reveal.js without having to write HTML or Markdown try <a href="https://slides.com">https://slides.com</a>. It’s a fully-featured visual editor and platform for reveal.js, by the same creator.</p>
+</div>
+</section>
+<section id="code-in-your-slides" class="slide level2">
+<h2>Code in your slides</h2>
+<p>Syntax highlighting, including line numbers.</p>
+<pre data-id="code-animation"><code class="java" data-line-numbers="2|3,4|6-8">    import java.jdbc.*;
+    public class Foo extends Bar {
+      private String a;
+      private final int X = 42;
+
+      public String toString() {
+        // implement this method
+      }
+
+      // more stuff here
+    }</code></pre>
+</section>
+<section id="transition-styles" class="slide level2">
+<h2>Transition Styles</h2>
+<div class="element: fragment">
+<p style="font-size: 50%;">
+Fade in
+</p>
+</div>
+<div class="element: fragment fade-out">
+<p style="font-size: 50%;">
+Fade out
+</p>
+</div>
+<div class="element: fragment highlight-red">
+<p style="font-size: 50%;">
+Highlight red
+</p>
+</div>
+<div class="element: fragment fade-in-then-out">
+<p style="font-size: 50%;">
+Fade in, then out
+</p>
+</div>
+<div class="element: fragment fade-up">
+<p style="font-size: 50%;">
+Slide up while fading in
+</p>
+</div>
+</section>
+<section id="speaker-notes" class="slide level2">
+<h2>Speaker Notes</h2>
+<p>Write speaker notes</p>
+<pre ><code class="markdown">::: notes
+
+Speaker notes
+
+:::</code></pre>
+<p>Press <kbd>S</kbd> to see the <strong>Speaker View</strong>.</p>
+<aside class="notes">
+<p>speaker notes</p>
+</aside>
+</section></section>
+<section id="section" class="title-slide slide level1" data-background="img/questions.jpeg">
+<h1 data-background="img/questions.jpeg"></h1>
+<h1 style="color:#cb4154;">
+Questions?
+</h1>
+</section>
+
+<section id="section-1" class="title-slide slide level1" data-background-color="blue-powder" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="auto 75%">
+<h1 data-background-color="blue-powder" data-background="https://media.giphy.com/media/4lpctAAV9Azpm/giphy.gif" data-background-size="auto 75%"></h1>
+
+</section>
+    </div>
+    <div class="fe-persistent-header">
+      <a href="https://cinco.linkedin.biz/people/snkarmak?q=Snehangshu%20Karmakar&t=people">@snkarmakar</a>
+    </div>
+  </div>
+
+  <script src="revealjs/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="revealjs/plugin/notes/notes.js"></script>
+  <script src="revealjs/plugin/search/search.js"></script>
+  <script src="revealjs/plugin/zoom/zoom.js"></script>
+  <script src="revealjs-menu/menu.js"></script>
+  <script src="revealjs/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+	menu: {
+	    // Specifies which side of the presentation the menu will
+	    // be shown. Use 'left' or 'right'.
+	    side: 'left',
+
+	    // Specifies the width of the menu.
+	    // Can be one of the following:
+	    // 'normal', 'wide', 'third', 'half', 'full', or
+	    // any valid css length value
+	    width: 'normal',
+
+	    // Add slide numbers to the titles in the slide list.
+	    // Use 'true' or format string (same as reveal.js slide numbers)
+	    numbers: true,
+
+	    // Specifies which slide elements will be used for generating
+	    // the slide titles in the menu. The default selects the first
+	    // heading element found in the slide, but you can specify any
+	    // valid css selector and the text from the first matching
+	    // element will be used.
+	    // Note: that a section data-menu-title attribute or an element
+	    // with a menu-title class will take precedence over this option
+	    titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+	    // If slides do not have a matching title, attempt to use the
+	    // start of the text content as the title instead
+	    useTextContentForMissingTitles: false,
+
+	    // Hide slides from the menu that do not have a title.
+	    // Set to 'true' to only list slides with titles.
+	    hideMissingTitles: false,
+
+	    // Adds markers to the slide titles to indicate the
+	    // progress through the presentation. Set to 'false'
+	    // to hide the markers.
+	    markers: true,
+
+	    // Specify custom panels to be included in the menu, by
+	    // providing an array of objects with 'title', 'icon'
+	    // properties, and either a 'src' or 'content' property.
+	    custom: false,
+
+	    // Specifies the themes that will be available in the themes
+	    // menu panel. Set to 'true' to show the themes menu panel
+	    // with the default themes list. Alternatively, provide an
+	    // array to specify the themes to make available in the
+	    // themes menu panel, for example...
+	    //
+	    // [
+	    //     { name: 'Black', theme: 'dist/theme/black.css' },
+	    //     { name: 'White', theme: 'dist/theme/white.css' },
+	    //     { name: 'League', theme: 'dist/theme/league.css' },
+	    //     {
+	    //       name: 'Dark',
+	    //       theme: 'lib/reveal.js/dist/theme/black.css',
+	    //       highlightTheme: 'lib/reveal.js/plugin/highlight/monokai.css'
+	    //     },
+	    //     {
+	    //       name: 'Code: Zenburn',
+	    //       highlightTheme: 'lib/reveal.js/plugin/highlight/zenburn.css'
+	    //     }
+	    // ]
+	    //
+	    // Note: specifying highlightTheme without a theme will
+	    // change the code highlight theme while leaving the
+	    // presentation theme unchanged.
+	    themes: true,
+
+	    // Specifies the path to the default theme files. If your
+	    // presentation uses a different path to the standard reveal
+	    // layout then you need to provide this option, but only
+	    // when 'themes' is set to 'true'. If you provide your own
+	    // list of themes or 'themes' is set to 'false' the
+	    // 'themesPath' option is ignored.
+	    themesPath: "revealjs/dist/theme/",
+
+	    // Specifies if the transitions menu panel will be shown.
+	    // Set to 'true' to show the transitions menu panel with
+	    // the default transitions list. Alternatively, provide an
+	    // array to specify the transitions to make available in
+	    // the transitions panel, for example...
+	    // ['None', 'Fade', 'Slide']
+	    transitions: true,
+
+	    // Adds a menu button to the slides to open the menu panel.
+	    // Set to 'false' to hide the button.
+	    openButton: true,
+
+	    // If 'true' allows the slide number in the presentation to
+	    // open the menu panel. The reveal.js slideNumber option must
+	    // be displayed for this to take effect
+	    openSlideNumber: true,
+
+	    // If true allows the user to open and navigate the menu using
+	    // the keyboard. Standard keyboard interaction with reveal
+	    // will be disabled while the menu is open.
+	    keyboard: true,
+
+	    // Normally the menu will close on user actions such as
+	    // selecting a menu item, or clicking the presentation area.
+	    // If 'true', the sticky option will leave the menu open
+	    // until it is explicitly closed, that is, using the close
+	    // button or pressing the ESC or m key (when the keyboard
+	    // interaction option is enabled).
+	    sticky: false,
+
+	    // If 'true' standard menu items will be automatically opened
+	    // when navigating using the keyboard. Note: this only takes
+	    // effect when both the 'keyboard' and 'sticky' options are enabled.
+	    autoOpen: true,
+
+	    // If 'true' the menu will not be created until it is explicitly
+	    // requested by calling RevealMenu.init(). Note this will delay
+	    // the creation of all menu panels, including custom panels, and
+	    // the menu button.
+	    delayInit: false,
+
+	    // If 'true' the menu will be shown when the menu is initialised.
+	    openOnInit: false,
+
+	    // By default the menu will load it's own font-awesome library
+	    // icons. If your presentation needs to load a different
+	    // font-awesome library the 'loadIcons' option can be set to false
+	    // and the menu will not attempt to load the font-awesome library.
+	    loadIcons: true
+        },
+
+        // reveal.js plugins
+        plugins: [
+	RevealHighlight,
+	RevealMenu,
+        RevealNotes,
+        RevealSearch,
+        RevealZoom
+       ]
+      });
+    </script>
+    </body>
+</html>
